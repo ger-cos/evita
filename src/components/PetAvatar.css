@@ -1,33 +1,7 @@
-
-  .fileInput {
-    padding: 10px;
-    margin: auto;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .imgPreview {
-    text-align: center;
-    margin: 5px 15px;
-    height: 200px;
-    width: 200px;
-
-  }
-  
-  img {
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    height: 150px;
-    width: 150px;
-  }
-  .previewText {
-    width: 100%;
-    margin-top: 20px;
-  }
- 
-  .centerText {
-    text-align: center;
-    width: 500px;
-  }
-  
+img {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  height: 150px;
+  width: 150px;
+}

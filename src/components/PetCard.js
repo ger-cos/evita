@@ -2,13 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PetAvatar from './PetAvatar';
 
+//import evite from '../resources/evite.jpeg'
+import fidel from '../resources/fidel.jpeg'
+import luna from '../resources/luna.jpeg'
+import evite from '../resources/evite.jpeg'
+
 export default function PetCard(props){
 
+    let img = props.pet.avatar
+    if(props.pet.nombre === 'Evite'){
+        img = evite
+    }
+    else if(props.pet.nombre === 'Luna'){
+        img = luna
+    }
+    else if(props.pet.nombre === 'Fidel'){
+        img = fidel
+    }
+
     return(
-        <div className="col-md-4" key={props.i}>
-            <div className="card mt-4">
+        <div key={props.i}>
                 <div>
-                    <img class="card-img-top" src={props.pet.avatar}/>
+                    <img class="card-img-top" src={img}/>
                 </div>
                 <div className="card-title text-center">
                     <h3>{props.pet.nombre}</h3>
@@ -26,7 +41,6 @@ export default function PetCard(props){
                         Delete
                     </button>
                 </div>
-            </div>
         </div>
     )
 }

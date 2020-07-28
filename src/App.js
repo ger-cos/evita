@@ -11,6 +11,7 @@ function App() {
       <NavBar> </NavBar>
       
       <PetPanel></PetPanel>
+      
       {/*
       <div className="container">
         

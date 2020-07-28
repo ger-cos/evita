@@ -4,6 +4,7 @@ import PetForm from './PetForm.js'
 import PetCard from './PetCard'
 //Gatos..
 import { pets } from '../pets.json'
+import './PetPanel.css'
 
 class PetPanel extends React.Component{
     constructor(props){
@@ -29,11 +30,11 @@ class PetPanel extends React.Component{
         })
         return(
             <>
-                <div class="card" style={{width: "16rem"}}>
-                    <PetForm onAddPet={this.handleAddPet} />
-                </div>
-                <div className="col-md-8">
-                    <div className="row">
+                <div className="petPanel">
+                    <div className="petForm" >
+                        <PetForm onAddPet={this.handleAddPet}></PetForm>
+                    </div>
+                    <div className="grillaPetCard">
                         {pets}
                     </div>
                 </div>

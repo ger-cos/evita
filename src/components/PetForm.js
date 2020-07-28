@@ -52,24 +52,23 @@ class PetForm extends React.Component{
     render(){
         return(
             <form>
-                <div class="form-row">
-                    <div class="form-group col-xs-2">
-                        <label>Nombre</label>
-                        <input name="nombre" type="text" value={this.state.nombre} onChange={this.handleChange} class="form-control" id="inputNombre" placeholder="Evite"></input>
-                    </div>
+                <div>
+                    <label>Nombre</label>
+                    <input name="nombre" type="text" value={this.state.nombre} onChange={this.handleChange} class="form-control" id="inputNombre" placeholder="Evite"></input>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group col-xs-2">
-                        <label>Edad</label>
-                        <input name="edad" type="number" value={this.state.edad} onChange={this.handleChange} class="form-control" id="inputEdad" placeholder="4"></input>
-                    </div>
+                
+                <div>
+                    <label>Edad</label>
+                    <input name="edad" type="number" value={this.state.edad} onChange={this.handleChange} class="form-control" id="inputEdad" placeholder="4"></input>
+                    
                 </div>
                 
-                <div class="form-row">
+                <div>
                     <PetAvatar onAddAvatar={this.handleAddAvatar}></PetAvatar>
                 </div>
-                <div class="form-row">
+                
+                <div >
                     <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
                 </div>
             </form>
