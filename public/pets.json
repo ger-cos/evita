@@ -1,0 +1,25 @@
+{
+  "pets": [
+    {
+      "nombre": "Fidel",
+      "edad": 2,
+      "peso": "6kg",
+      "descripcion": "Gato blanco y negro",
+      "avatar": "/home/gercos/Documents/web/gercos-app/resources/fidel.jpeg"
+    },
+    {
+      "nombre": "Evite",
+      "edad": 1,
+      "peso": "3kg",
+      "descripcion": "Gata gris con plumero",
+      "avatar": "/home/gercos/Documents/web/gercos-app/resources/evite.jpeg"
+    },
+    {
+      "nombre": "Luna",
+      "edad": 4,
+      "peso": "5kg",
+      "descripcion": "Gata hermosa y gorda",
+      "avatar": "/home/gercos/Documents/web/gercos-app/resources/luna.jpeg"
+    }
+  ]
+}
