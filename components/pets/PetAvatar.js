@@ -1,64 +1,60 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/PetAvatar.css'
+import {useState, useEffect} from 'react'
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
-class PetAvatar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      file: '',
-      imagePreviewUrl: ''
-    };
-    this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    // TODO: do something with -> this.state.file
-  }
+export default function PetAvatar({label, register}){
 
-  handleImageChange(e) {
-    e.preventDefault();
+   console.log(register)
+    const [file, setFile] = useState('')
+    const [imagePreviewUrl, setImagePreviewUrl] = useState('')
 
-    let reader = new FileReader();
-    let file = e.target.files[0];
+    const handleImageChange = (e) =>{
+      e.preventDefault();
 
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
-      this.props.onAddAvatar(reader.result)
+      let reader = new FileReader();
+      let file = e.target.files[0];
+      
+      reader.onloadend = () => {
+        setFile(file)
+        setImagePreviewUrl(reader.result)
+        //props.onAddAvatar(reader.result)
+      }
+      reader.readAsDataURL(file)
     }
 
-    reader.readAsDataURL(file)
-  }
-
-  render() {
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
+    let imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      imagePreview = (<img id='pet' src={imagePreviewUrl} />);
     }
     else{
-        $imagePreview=(<div className="previewText">Please selct an Rata de campo Image</div>)
+        imagePreview=(<div >Please selcet an Rata de campo Image</div>)
     }
-
     return (
-      <div
-        className="previewComponent">
-        <form onSubmit={this.handleSubmit}>
-          <input className="btn btn-outline-dak" type="file" onChange={this.handleImageChange} />
-        {/*<button className="submitButton" type="submit" onClick={this.handleSubmit}>Enviar</button> */}
-        </form>
-        <div className="imgPreview">
-            {$imagePreview}
+      <>
+        <div>
+            {imagePreview}
         </div>
-      </div>
+        <input
+            name={label}
+            ref={register} 
+            accept="image/*" 
+            id="icon-button-file" 
+            type="file"
+            onChange={handleImageChange}
+            style={{display: 'none', align: 'center'}}
+            
+        />
+        <label 
+            htmlFor="icon-button-file" style={{align: 'center'}}>
+            <IconButton 
+                color="primary" 
+                aria-label="upload picture" 
+                component="span">
+                    <PhotoCamera />
+            </IconButton>
+        </label>
+
+      </>
     )
-  }
-
 }
-
-export default PetAvatar

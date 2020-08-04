@@ -1,7 +1,55 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import PetAvatar from './PetAvatar.js'
+import {useForm} from 'react-hook-form'
+export default function PetForm(){
+    const {register, handleSubmit} = useForm()
 
+    const onSubmit = (values) =>{
+        console.log(values)
+        //props.onAddAvatar()
+    }
+
+    return(
+        <form onSubmit={handleSubmit(onSubmit)}>
+                <div>
+                    <label>Nombre</label>
+                    <input
+                    ref={register} 
+                    name="nombre"
+                    type="text" 
+                    className="form-control" 
+                    id="inputNombre" 
+                    placeholder="Evite"></input>
+                </div>
+                
+                
+                <div>
+                    <label>Edad</label>
+                    <input 
+                    ref={register}
+                    name="edad" 
+                    type="number" 
+                    className="form-control" 
+                    id="inputEdad" 
+                    placeholder="4"></input>
+                </div>
+                
+                <div>
+                    <PetAvatar
+                    label={"avatar"}
+                    register={register}> 
+                    </PetAvatar>
+                </div>
+                
+                <div >
+                    <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    >Submit</button>
+                </div>
+            </form>
+    )
+}
+/*
 class PetForm extends React.Component{
     constructor(props){
         super(props);
@@ -51,29 +99,11 @@ class PetForm extends React.Component{
 
     render(){
         return(
-            <form>
-                <div>
-                    <label>Nombre</label>
-                    <input name="nombre" type="text" value={this.state.nombre} onChange={this.handleChange} class="form-control" id="inputNombre" placeholder="Evite"></input>
-                </div>
-                
-                
-                <div>
-                    <label>Edad</label>
-                    <input name="edad" type="number" value={this.state.edad} onChange={this.handleChange} class="form-control" id="inputEdad" placeholder="4"></input>
-                    
-                </div>
-                
-                <div>
-                    <PetAvatar onAddAvatar={this.handleAddAvatar}></PetAvatar>
-                </div>
-                
-                <div >
-                    <button type="submit" class="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
-                </div>
-            </form>
+            
         )
     }
 }
 
 export default PetForm
+
+*/
