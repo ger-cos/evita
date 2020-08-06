@@ -1,5 +1,5 @@
 import Container from '../components/layaouts/Container'
-import DrugForm from '../components/DrugForm'
+import DrugForm from '../components/drugs/DrugForm'
 export default function Drug(){
     return(
         <Container>

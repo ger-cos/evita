@@ -5,7 +5,6 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 export default function PetAvatar({label, register}){
 
-   console.log(register)
     const [file, setFile] = useState('')
     const [imagePreviewUrl, setImagePreviewUrl] = useState('')
 
