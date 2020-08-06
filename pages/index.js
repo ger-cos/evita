@@ -7,7 +7,6 @@ function App() {
     <div className="App">
       <Container>
         <h1 className="text-center">Bienvenido a la pagina de los gatos!</h1>
-        <PetForm></PetForm>
       </Container>
       
     </div>
