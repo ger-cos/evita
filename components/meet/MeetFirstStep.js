@@ -1,6 +1,19 @@
 import { TextField, MenuItem, InputAdornment, Button} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+
+const profesionales = (motivo) =>{
+    if(motivo === 'Vacuna'){
+        return ['Ivana','Heiman']
+    }
+    else if(motivo === 'Celos'){
+        return ['Tate']
+    }
+    else{
+        return ['Anita','Marisa']
+    }
+}
+
 export default function MeetFirstStep({
     handleNext, 
     handleChange, 
@@ -8,8 +21,6 @@ export default function MeetFirstStep({
     filedError,
     isError}){
 
-    const [disabled, setDisable] = useState(true)
-    const [prof, setProf] = useState('')
     const tipoConsultas=[
         "Vacuna",
         "Control",
@@ -18,18 +29,23 @@ export default function MeetFirstStep({
         "Celos"
     ]
 
+
+    const [prof, setProf] = useState('')
+    
+
+    useEffect(()=>{
+        const ret = profesionales(motivo)
+        setProf(ret)
+    }, [motivo])
+
+        
+    /*
     const changeConsulta = (event) =>{
         const consulta = event.target.value
-        setDisable(false)
-
-        if(consulta === "Vacuna"){
-            setProf(["Ivana"])
-        }
-        else{
-            setProf(["German", "Esi"])
-        }
+        profesionales(consulta)
+        handleChange("motivo")(event)
     }
-
+    */
     const isEmpty = false
     return(
         <>
@@ -37,14 +53,13 @@ export default function MeetFirstStep({
                 <Grid item xs={12} sm={6}>
                     <TextField
                     name="consulta"
-
                     fullWidth
                     id="tipo"
                     select
                     label="Consulta"
-                    helperText="Motivo de la consulta"
+                    helperText="Seleccione el motivo de la consulta"
                     defaultValue={motivo}
-                    onChange={changeConsulta}
+                    onChange={handleChange('motivo')}
                     required
                     >
                     {tipoConsultas.map((tipo) => (
@@ -63,14 +78,15 @@ export default function MeetFirstStep({
                     select
                     label="Profesional"
                     helperText="Por favor selecciona el profesional"
-                    disabled={disabled}
+                    value={profesional}
+                    onChange={handleChange('profesional')}
                     >
                     
-                    {prof!='' && prof.map((tipo) => (
+                    {(prof!='' && prof.map((tipo) => (
                         <MenuItem key={tipo} value={tipo}>
                             {tipo}
                         </MenuItem>
-                    ))}
+                    )))}
                     </TextField>
                 </Grid>
             </Grid>

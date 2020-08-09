@@ -9,20 +9,22 @@ import MeetSecondStep from './MeetSecondStep'
 const emailRegex = RegExp(/^[^@]+@[^@]+\.[^@]+$/)
 const phoneRegex = RegExp(/^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4,6})$/)
 // Step titles
-const labels = [ 'Motivo', 'Fecha y hora', 'Confirmation' ]
+
+const labels = [ 'Motivo', 'Fecha y hora', 'Confirmacion' ]
 
 export default function MeetForm(){
 	const [ steps, setSteps ] = useState(0)
 	const [ fields, setFields ] = useState({
         motivo: '',
-        profesional:'',
+        profesional:"",
 		firstName: '',
 		lastName: '',
 		email: '',
 		gender: '',
 		date: '',
 		city: '',
-		phone: ''
+		phone: '',
+		time: ''
 	})
 	// Copy fields as they all have the same name
 	const [ filedError, setFieldError ] = useState({
@@ -30,6 +32,15 @@ export default function MeetForm(){
 	})
 
 	const [ isError, setIsError ] = useState(false)
+
+	/*
+	
+	const handleNext = function(){
+		setSteps(step )
+	}
+
+	*/ 
+
 
 	// Proceed to next step
 	const handleNext = () => setSteps(steps + 1)
@@ -39,11 +50,13 @@ export default function MeetForm(){
 	// Handle fields change
 	const handleChange = input => ({ target: { value } }) => {
 		// Set values to the fields
+		console.log("HOLA")
+
 		setFields({
 			...fields,
 			[input]: value
 		})
-
+		
 		// Handle errors
 		const formErrors = { ...filedError }
 		const lengthValidate = value.length > 0 && value.length < 3
@@ -74,6 +87,7 @@ export default function MeetForm(){
 		setFieldError({
 			...formErrors
 		})
+		
 	}
 
 	const handleSteps = step => {
@@ -106,11 +120,19 @@ export default function MeetForm(){
 		}
 	}
 
+	/*
+		<ul>
+			<li key=1> Hola </li>
+			<li> Otra cosa</li>
+			<li> Otra cosa</li>
+		<ul>
+	*/ 
+
 	// Handle components
 	return (
 		<Fragment>
 			{steps === labels.length ? (
-				<Success />
+				<h1>Hola</h1>
 			) : (
 				<Fragment>
 					<Stepper activeStep={steps} style={{ paddingTop: 30, paddingBottom: 50 }} alternativeLabel>

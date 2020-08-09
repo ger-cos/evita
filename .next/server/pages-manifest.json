@@ -1,8 +1,8 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
   "/pet": "pages/pet.js",
-  "/": "pages/index.js",
-  "/meet": "pages/meet.js"
+  "/meet": "pages/meet.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }
