@@ -21,10 +21,10 @@ export default function MeetForm(){
 		lastName: '',
 		email: '',
 		gender: '',
-		date: '',
+		date: new Date(),
 		city: '',
 		phone: '',
-		time: ''
+		time: "2018-01-01T00:00:00.000Z"
 	})
 	// Copy fields as they all have the same name
 	const [ filedError, setFieldError ] = useState({

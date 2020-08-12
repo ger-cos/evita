@@ -13,7 +13,7 @@ const Container = (props) => (
       */}
     </Head>
     <NavBar />
-    <div className="container p-4">{props.children}</div>
+    <div style={{"margin-left":"85px","margin-top":"15px"}}> {props.children}</div>
   </div>
 );
 

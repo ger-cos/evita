@@ -1,12 +1,13 @@
-import PetAvatar from './PetAvatar.js'
+import PetAvatar from './AvatarPreview.js'
 import {useForm} from 'react-hook-form'
 import {savePet} from '../../services/Database'
 import {db} from '../../services/firebase'
-export default function PetForm(){
+export default function PetForm({onAddPet}){
     const {register, handleSubmit} = useForm()
 
     const onSubmit = (values) =>{
-        
+        console.log("El form")
+        onAddPet(values)
     }
 
     return(

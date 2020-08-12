@@ -1,46 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+
 import PetForm from './PetForm.js'
 import PetCard from './PetCard.js'
+import {useState, useEffect} from 'react'
+import Grid from '@material-ui/core/Grid';
 //Gatos..
-import { pets } from '../../public/pets.json'
 
-class PetPanel extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            pets: pets
-        }
+import { makeStyles } from '@material-ui/core/styles';
 
-        this.handleAddPet = this.handleAddPet.bind(this);
-    }
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  }));
 
-    handleAddPet(pet){
-        this.setState({
-            pets: [...this.state.pets, pet]
-        })
-    }
+export default function PetPanel(){
+    const classes = useStyles();
+    const [pets, setPets] = useState([])
 
-    render(){
-        const pets = this.state.pets.map((pet, i) =>{
-            return(
-                <PetCard pet={pet} i={i}></PetCard>
-            )
-        })
-        return(
-            <>
-                <div className="petPanel">
-                    <div className="petForm" >
-                        <PetForm onAddPet={this.handleAddPet}></PetForm>
-                    </div>
-                    <div className="grillaPetCard">
-                        {pets}
-                    </div>
-                </div>
-            </>
-        )
+    
+
+    useEffect(()=>{
+        fetch('http://localhost:3000/api/pets')
+        .then((res) => res.json())
+        .then(setPets)
+    }, [])
+
+    const handleAddPet = (pet)=> {
+        
+        console.log("La pet")
+        console.log(pet)
+        setPets([...pets, pet])
         
     }
-}
+    /*
 
-export default PetPanel
+    */ 
+
+    const petCards = pets.map((pet, i) =>{
+        return(
+            <Grid item xs={3}>
+                <PetCard 
+                    nombre={pet.nombre}
+                    edad={pet.edad} 
+                    id={i}
+                    peso={"6kg"}
+                    avatar={pet.avatar}>
+                </PetCard>
+            </Grid>
+        )
+    })
+
+    return(
+        <div className={classes.root}>
+            <Grid container spacing={2}>
+                <Grid item xs={2}>
+                    <PetForm onAddPet={handleAddPet}></PetForm>
+                </Grid>
+                <Grid item xs={10} container direction="row" justify="flex-start" alignItems="flex-start" spacing={3} >
+                    {petCards}
+                </Grid>
+            </Grid>
+        </div>
+    )
+        
+    
+}
